@@ -9,7 +9,7 @@ const render = require("./src/page-template");
 const teamMembers = [];
 const arrayIds = [];
 
-function buildYourTeam() {
+function createManager() {
   console.log("Please build your team");
 
   inquirer
@@ -42,9 +42,10 @@ function buildYourTeam() {
         res.email,
         res.officeNumber
       );
-      teamMembers.push(manager);
-      arrayIds.push(res.id);
 
+      teamMembers.push(manager);
+
+      arrayIds.push(res.id);
       createMember();
     });
 }
@@ -56,7 +57,7 @@ function createMember() {
         type: "list",
         name: "memberChoice",
         message: "Which team members would you like to add?",
-        choices: ["engineer", "intern", "none"],
+        choices: ["engineer", "intern", "done adding"],
       },
     ])
     .then((choice) => {
@@ -68,7 +69,7 @@ function createMember() {
           createIntern();
           break;
         default:
-          createTheTeam();
+          buildTheTeam();
       }
     });
 }
@@ -100,8 +101,8 @@ function createEngineer() {
     .then((res) => {
       const engineer = new Engineer(res.name, res.id, res.email, res.github);
       teamMembers.push(engineer);
-      arrayIds.push(res.id);
 
+      arrayIds.push(res.id);
       createMember();
     });
 }
@@ -114,29 +115,37 @@ function createIntern() {
         name: "name",
         message: "What is the intern's name?",
       },
-      // {
-      //   type: "input",
-      //   name: "id",
-      //   message: "What is the engineer's id?",
-      // },
-      // {
-      //   type: "input",
-      //   name: "email",
-      //   message: "What is the engineer's email?",
-      // },
-      // {
-      //   type: "input",
-      //   name: "github",
-      //   message: "What is the engineer's github?",
-      // },
+      {
+        type: "input",
+        name: "id",
+        message: "What is the engineer's id?",
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "What is the engineer's email?",
+      },
+      {
+        type: "input",
+        name: "school",
+        message: "Where is your intern's school?",
+      },
     ])
-    .then(() => {
+    .then((res) => {
+      const intern = new Intern(res.name, res.id, res.email, res.school);
+      teamMembers.push(intern);
+
+      arrayIds.push(res.id);
       createMember();
     });
 }
 
-function createTheTeam() {
-  fs.writeFile("team.html", "", "utf-8");
+function buildTheTeam() {
+  fs.writeFile("dist/team.html", render(teamMembers), (err) => {
+    if (err) {
+      console.log("err", err);
+    }
+  });
 }
 
-buildYourTeam();
+createManager();
