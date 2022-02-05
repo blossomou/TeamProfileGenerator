@@ -8,11 +8,11 @@ function generateMemberCards(data) {
           <label class="medFont">${manager.getRole()}</label>
         </div>
         <div class="cardBody">
-          <p>ID: ${manager.id}</p>
+          <p><b>Id:</b> ${manager.id}</p>
           <div class="divider"></div>
-          <p>Email: ${manager.email}</p>
+          <p><b>Email:</b> ${manager.email}</p>
           <div class="divider"></div>
-          <p>Office Number:${manager.officeNumber}</p>
+          <p><b>Office Number:</b> ${manager.officeNumber}</p>
         </div>
       </div>
   `;
@@ -26,11 +26,11 @@ function generateMemberCards(data) {
           <label class="medFont">${engineer.getRole()}</label>
         </div>
         <div class="cardBody">
-          <p>ID: ${engineer.id}</p>
+          <p><b>Id:</b> ${engineer.id}</p>
           <div class="divider"></div>
-          <p>Email: ${engineer.email}</p>
+          <p><b>Email:</b> ${engineer.email}</p>
           <div class="divider"></div>
-          <p>Github: ${engineer.github}</p>
+          <p><b>Github:</b> ${engineer.github}</p>
         </div>
       </div>
 
@@ -45,21 +45,33 @@ function generateMemberCards(data) {
           <label class="medFont">${intern.getRole()}</label>
         </div>
         <div class="cardBody">
-          <p>ID: ${intern.id}</p>
+          <p><b>Id:</b> ${intern.id}</p>
           <div class="divider"></div>
-          <p>Email: ${intern.email}</p>
+          <p><b>Email:</b> ${intern.email}</p>
           <div class="divider"></div>
-          <p>School: ${intern.school}</p>
+          <p><b>School:</b> ${intern.school}</p>
         </div>
       </div>
 
   `;
   }
 
+  //   for (let i = 0; i < data.length; i++) {
+  //     if (data[i].constructor.name === "Manager") {
+  //       html.push(generateManagerCard(data[i]));
+  //     } else if (data[i].constructor.name === "Engineer") {
+  //       html.push(generateEngineerCard(data[i]));
+  //     } else {
+  //       html.push(generateInternCard(data[i]));
+  //     }
+  //   }
+  //   return html.join("");
+  // }
+
   for (let i = 0; i < data.length; i++) {
-    if (data[i].constructor.name === "Manager") {
+    if (data[i].getRole() === "Manager") {
       html.push(generateManagerCard(data[i]));
-    } else if (data[i].constructor.name === "Engineer") {
+    } else if (data[i].getRole() === "Engineer") {
       html.push(generateEngineerCard(data[i]));
     } else {
       html.push(generateInternCard(data[i]));
