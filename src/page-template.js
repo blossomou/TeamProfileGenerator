@@ -5,7 +5,7 @@ function generateMemberCards(data) {
       <div class="cardBorder">
         <div class="cardHeader">
           <label class="bigFont">${manager.name}</label>
-          <label class="medFont">Manager</label>
+          <label class="medFont">${manager.getRole()}</label>
         </div>
         <div class="cardBody">
           <p>ID: ${manager.id}</p>
@@ -23,7 +23,7 @@ function generateMemberCards(data) {
     <div class="cardBorder">
         <div class="cardHeader">
           <label class="bigFont">${engineer.name}</label>
-          <label class="medFont">Engineer</label>
+          <label class="medFont">${engineer.getRole()}</label>
         </div>
         <div class="cardBody">
           <p>ID: ${engineer.id}</p>
@@ -42,7 +42,7 @@ function generateMemberCards(data) {
     <div class="cardBorder">
         <div class="cardHeader">
           <label class="bigFont">${intern.name}</label>
-          <label class="medFont">Intern</label>
+          <label class="medFont">${intern.getRole()}</label>
         </div>
         <div class="cardBody">
           <p>ID: ${intern.id}</p>

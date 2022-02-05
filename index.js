@@ -118,12 +118,12 @@ function createIntern() {
       {
         type: "input",
         name: "id",
-        message: "What is the engineer's id?",
+        message: "What is the intern's id?",
       },
       {
         type: "input",
         name: "email",
-        message: "What is the engineer's email?",
+        message: "What is the intern's email?",
       },
       {
         type: "input",
